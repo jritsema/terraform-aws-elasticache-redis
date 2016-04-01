@@ -4,15 +4,12 @@ variable "vpc_id" {
 variable "private_subnet_ids" {
 }
 
-variable "cache_name" {
-}
-
 variable "engine_version" {
-  default = "2.8.22"
+  default = "2.8.24"
 }
 
 variable "instance_type" {
-  default = "cache.t2.micro"
+  default = "cache.m3.medium"
 }
 
 variable "maintenance_window" {
@@ -20,5 +17,28 @@ variable "maintenance_window" {
   default = "sun:05:00-sun:06:00"
 }
 
-variable "alarm_actions" {
+# tags
+
+variable "tag_name" {
+}
+
+variable "tag_description" {
+}
+
+variable "tag_environment" {
+}
+
+variable "tag_creator" {
+}
+
+variable "tag_customer" {
+}
+
+variable "tag_owner" {
+}
+
+variable "tag_product" {
+}
+
+variable "tag_costcenter" {
 }

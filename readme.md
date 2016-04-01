@@ -2,36 +2,48 @@
 
 A Terraform module to create an Amazon Web Services (AWS) Redis ElastiCache cluster.
 
-## Usage
+### Usage
 
-```javascript
-module "redis_elasticache" {
-  source = "github.com/azavea/terraform-aws-redis-elasticache"
+```terraform
+module "elasticache_redis" {
+  source = "github.com/jritsema/terraform-aws-elasticache-redis"
 
   vpc_id = "vpc-20f74844"
   private_subnet_ids = "subnet-4a887f3c,subnet-76dae35d"
 
-  cache_name = "cache"
-  engine_version = "2.8.22"
-  instance_type = "cache.t2.micro"
+  engine_version = "2.8.24"
+  instance_type = "cache.m3.medium"
   maintenance_window = "sun:05:00-sun:06:00"
 
-  alarm_actions = "arn:aws:sns..."
+  tag_name = "redis"
+  tag_description = "redis cluster for development"
+  tag_creator = "creator"
+  tag_product = "product"
+  tag_customer = "customer"
+  tag_owner = "owner"
+  tag_environment = "dev"
+  tag_costcenter = "TBD"
 }
 ```
 
-## Variables
+### Variables
 
 - `vpc_id` - ID of VPC meant to house the cache
 - `private_subnet_ids` - Comma delimited list of private subnet IDs
-- `cache_name` - Name used as ElastiCache cluster ID
-- `engine_version` - Cache engine version (default: `2.8.22`)
-- `instance_type` - Instance type for cache instance (default: `cache.t2.micro`)
+- `engine_version` - Cache engine version (default: `2.8.24`)
+- `instance_type` - Instance type for cache instance (default: `cache.m3.medium`)
 - `maintenance_window` - 60 minute time window to reserve for maintenance
   (default: `sun:05:00-sun:06:00`)
-- `alarm_actions` - Comma delimited list of ARNs to be notified via CloudWatch
+- `tag_name`
+- `tag_description`
+- `tag_creator`
+- `tag_product`
+- `tag_customer`
+- `tag_owner`
+- `tag_environment`
+- `tag_costcenter`
 
-## Outputs
+### Outputs
 
 - `cache_security_group_id` - Security group ID of the cache cluster
 - `hostname` - Public DNS name of cache node
